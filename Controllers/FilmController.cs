@@ -10,15 +10,17 @@ namespace premozi.Controllers
         {
             return View();
         }
-        public string hello(string name="", int  id=1)
+        public IActionResult hello(string name="", int  id=1)
         {
-            if(name == "")
+            if (name == "")
             {
-                return HtmlEncoder.Default.Encode("Hiiii hiiii hellooo");
+                ViewData["Message"]= HtmlEncoder.Default.Encode("Hiiii hiiii hellooo");
+                return View();
             }
             else
             {
-                return HtmlEncoder.Default.Encode($"Hello {name}, ID: {id}");
+                ViewData["Message"]= HtmlEncoder.Default.Encode($"Hello {name}, ID: {id}");
+                return View();
             }
         }
     }

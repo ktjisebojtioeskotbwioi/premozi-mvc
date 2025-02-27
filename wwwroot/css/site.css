@@ -1,5 +1,7 @@
 html {
   font-size: 14px;
+  background-color:black;
+  text-align:center;
 }
 
 @media (min-width: 768px) {
