@@ -4,5 +4,20 @@
 @{
 
     <p>@ViewData["Message"]</p>
+    /*@foreach(Felhasznalok user in Model){
+        <tr>
+            <td>@Html.DisplayFor(modelUser => user.userID)</td>
+            <td>@Html.DisplayFor(modelUser => user.username)</td>
+            <td>@Html.DisplayFor(modelUser => user.password)</td>
+            <td>@Html.DisplayFor(modelUser => user.email)</td>
+            <td>@Html.DisplayFor(modelUser => user.creation_date)</td>
+            <td>@Html.DisplayFor(modelUser => user.account_status)</td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@user.userID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@user.userID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@user.userID">Delete</a>
+            </td>
+        </tr>
+    }*/
 }
 
