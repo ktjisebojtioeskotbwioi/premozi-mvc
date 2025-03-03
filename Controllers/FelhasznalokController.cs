@@ -19,17 +19,17 @@ namespace premozi.Controllers
         {
             _context = context;
         }
-        public async Task<IActionResult> Bejelentkezes()
+        public ActionResult Bejelentkezes()
         {
             return View();
         }
-        public async Task<IActionResult> Regisztracio()
+        public ActionResult Regisztracio()
         {
             return View();
         }
         string sha512(string s) => Convert.ToBase64String(SHA512.HashData(Encoding.UTF8.GetBytes(s)));
         [HttpPost]
-        public async Task<IActionResult> RegHandler(IFormCollection form)
+        public ActionResult RegHandler(IFormCollection form)
         {
             try
             {
@@ -41,9 +41,9 @@ namespace premozi.Controllers
                     if (password.Length > 6 && password.Length < 20)
                     {
                         password = sha512(password);
-                        Console.WriteLine($"{username}, {password}, {email}");
                         _context.Felhasznalok.Add(new Felhasznalok { username = username, password = password, email = email });
                         _context.SaveChanges();
+                        Console.WriteLine($"{username}, {email}");
                         return View("../Home/Index");
                     }
                     else
@@ -59,23 +59,25 @@ namespace premozi.Controllers
             return View("Regisztracio");
         }
         [HttpPost]
-        public async Task<IActionResult> LoginHandler(IFormCollection form)
+        public ActionResult LoginHandler(IFormCollection form)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    string username = form["username"].ToString();
+                    string emailOrUserName = form["username"].ToString();
                     string password = form["password"].ToString();
                     password = sha512(password);
-                    if (_context.Felhasznalok.Where(temp => temp.username==username).Count() != 0 && _context.Felhasznalok.Where(temp => temp.password == password).Count() != 0)
+                    IEnumerable<Felhasznalok> _tUserEnum = _context.Felhasznalok.Where(temp => temp.password == password && temp.username == emailOrUserName || temp.email == emailOrUserName);
+                    if (_tUserEnum.Any())
                     {
-                        Console.WriteLine($"{username}, {password}");
+                        Felhasznalok _tUser = _tUserEnum.First();
+                        Console.WriteLine($"UID: {_tUser.userID}, username: {_tUser.username}, email: {_tUser.email}");
                         return View("../Home/Index");
                     }
                     else
                     {
-                        Console.WriteLine("Nem volt ilyen fiók");
+                        Console.WriteLine("Nincs ilyen fiók");
                         return View("Bejelentkezes");
                     }
                 }                
@@ -88,11 +90,11 @@ namespace premozi.Controllers
         }
 
         // GET: FelhasznalokController
-        public async Task<IActionResult> Index()
+        public ActionResult Index()
         {
             return View();
         }
-        public async Task<IActionResult> lista()
+        public ActionResult lista()
         {
             return View(_context.Felhasznalok.ToList());
         }

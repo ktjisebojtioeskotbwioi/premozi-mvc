@@ -9,53 +9,48 @@
 </p>
 <table class="table">
     <thead>
-        <tr class="text-light">
-            <th>
+        <tr class="text-light border-1">
+            <th class="border-1">
                 @Html.DisplayNameFor(model => model.userID)
             </th>
-            <th>
+            <th class="border-1">
                 @Html.DisplayNameFor(model => model.username)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.password)
-            </th>
-            <th>
+            <th class="border-1">
                 @Html.DisplayNameFor(model => model.email)
             </th>
-            <th>
+            <th class="border-1">
                 @Html.DisplayNameFor(model => model.creation_date)
             </th>
-            <th>
+            <th class="border-1">
                 @Html.DisplayNameFor(model => model.account_status)
             </th>
-            <th>@Html.DisplayNameFor(model=>model.priviledges)</th>
+            <th class="border-1">@Html.DisplayNameFor(model => model.priviledges)</th>
+            <th class="border-1"></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
-        <tr class="text-light">
-            <td>
+        <tr class="text-light border-1">
+                <td class="border-1">
                     @Html.DisplayFor(modelItem => item.userID)
             </td>
-            <td>
+                <td class="border-1">
                     @Html.DisplayFor(modelItem => item.username)
             </td>
-            <td>
-                    @Html.DisplayFor(modelItem => item.password)
-            </td>
-            <td>
+            <td class="border-1">
                     @Html.DisplayFor(modelItem => item.email)
             </td>
-                <td>
+                <td class="border-1">
                     @Html.DisplayFor(modelItem => item.creation_date)
                 </td>
-                <td>
+                <td class="border-1">
                     @Html.DisplayFor(modelItem => item.account_status)
                 </td>
-                <td>
+                <td class="border-1">
                     @Html.DisplayFor(modelItem => item.priviledges)
                 </td>
-            <td>
+            <td class="border-1">
                 <a asp-action="Edit" asp-route-id="@item.userID">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.userID">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.userID">Delete</a>
