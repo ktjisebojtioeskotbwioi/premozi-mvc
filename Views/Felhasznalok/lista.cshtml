@@ -9,7 +9,7 @@
 </p>
 <table class="table">
     <thead>
-        <tr>
+        <tr class="text-light">
             <th>
                 @Html.DisplayNameFor(model => model.userID)
             </th>
@@ -28,12 +28,12 @@
             <th>
                 @Html.DisplayNameFor(model => model.account_status)
             </th>
-            <th></th>
+            <th>@Html.DisplayNameFor(model=>model.priviledges)</th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
-        <tr>
+        <tr class="text-light">
             <td>
                     @Html.DisplayFor(modelItem => item.userID)
             </td>
@@ -51,6 +51,9 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.account_status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.priviledges)
                 </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.userID">Edit</a> |

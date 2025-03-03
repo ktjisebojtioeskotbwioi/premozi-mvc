@@ -1,0 +1,25 @@
+﻿<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="card my-5 bg-secondary">
+                <form id="loginForm" class="card-body cardbody-color p-lg-5" asp-controller="Felhasznalok" asp-action="LoginHandler" method="post">
+                    <div class="text-center mb-5">
+                        <h1 class="text-dark font-weight-bold">Bejelentkezés</h1>
+                    </div>
+                    <div class="mb-3">
+                        <label for="username" class="text-dark font-weight-bold fw-bold mb-2">Felhasználónév</label>
+                        <input type="text" class="form-control" name="username" placeholder="Felhasználónév" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="text-dark font-weight-bold fw-bold mb-2">Jelszó</label>
+                        <input type="password" class="form-control" name="password" placeholder="Jelszó" required>
+                    </div>
+                    <div class="text-center"><button type="submit" name="submit" class="btn btn-color px-5 mb-3 w-100 btn-outline-dark fw-bold mt-4" value="loginPage">Bejelentkezés</button></div>
+                    <div id="emailHelp" class="form-text text-center text-dark">Nincs még fiókja?<a asp-controller="Felhasznalok" asp-action="Regisztracio" class="text-dark fw-bold text-decoration-none"> Regisztráljon most.</a></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@{
+}

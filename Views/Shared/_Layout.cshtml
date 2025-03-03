@@ -28,9 +28,17 @@
                         </li>
                         <li class="nav-item">
                             <a style="color:silver" class="nav-link" asp-area="" asp-controller="Film" asp-action="Index">Film</a>
-                        </li>
+                        </li>                        
                     </ul>
-                </div>
+                    <div class="text-light, my-2, my-lg-0, mr-sm-0, my-sm-0">
+                        @{
+                            /*if user is logged in, account button here, otherwise login button here*/
+                        }
+                        <form class="form-inline my-2 my-lg-0">
+                            <button style="background-color:rgb(25,0,25)" class="btn my-2 btn-outline-light my-sm-0 text-light text-center" type="submit" asp-controller="Felhasznalok" asp-action="Bejelentkezes">Bejelentkezés</button>
+                        </form>
+                    </div>
+                </div>                
             </div>
         </nav>
     </header>
