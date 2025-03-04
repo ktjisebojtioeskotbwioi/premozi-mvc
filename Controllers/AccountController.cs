@@ -57,9 +57,10 @@ namespace premozi.Controllers
                         throw new Exception(_errorMessages);
                     }
                     _password = sha512(_password);
-                    _context.Users.Add(new User { username = _username, password = _password, email = _email });
+                    User _tUser = new User { username = _username, password = _password, email = _email };
+                    _context.Users.Add(_tUser);
                     _context.SaveChanges();
-                    Console.WriteLine($"{_username}, {_email}");
+                    Console.WriteLine($"UID: {_tUser.userID}, username: {_tUser.username}, email: {_tUser.email}");
                     return View("../Home/Index");
                 }
             }

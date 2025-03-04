@@ -9,9 +9,17 @@ namespace premozi.Models
 {
     public class Terem
     {
-        [Key, Column(TypeName = "int(11)"), DatabaseGenerated(DatabaseGeneratedOption.Identity), NotNull, Required, Editable(false)]
+        [Key, Column(TypeName = "int(5)"), DatabaseGenerated(DatabaseGeneratedOption.Identity), NotNull, Required, Editable(false)]
         public int id { get; set; }
+        [Column(TypeName ="int(3)"), NotNull, Required]
         public int Ferohely { get; set; }
+        [Column(TypeName ="text"), NotNull, Required]
         public string Tipus { get; set; }
+        [Column(TypeName ="int(3)"), NotNull, Required]
+        public int Sorok { get; set; }
+        [Column(TypeName ="longtext"), NotNull, Required]
+        public string Allapot { get; set; }
+        [Column(TypeName = "longtext"), AllowNull]
+        public string Megjegyzes { get; set; }
     }
 }
