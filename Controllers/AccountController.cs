@@ -12,18 +12,18 @@ using MySql.Data.MySqlClient;
 
 namespace premozi.Controllers
 {
-    public class FelhasznalokController : Controller
+    public class AccountController : Controller
     {
         private readonly DataBaseContext _context;
-        public FelhasznalokController(DataBaseContext context)
+        public AccountController(DataBaseContext context)
         {
             _context = context;
         }
-        public ActionResult Bejelentkezes()
+        public ActionResult Login()
         {
             return View();
         }
-        public ActionResult Regisztracio()
+        public ActionResult Registration()
         {
             return View();
         }
@@ -35,28 +35,39 @@ namespace premozi.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    string username = form["username"].ToString();
-                    string password = form["password"].ToString();
-                    string email = form["email"].ToString();
-                    if (password.Length > 6 && password.Length < 20)
+                    string _username = form["username"].ToString();
+                    string _password = form["password"].ToString();
+                    string _email = form["email"].ToString();
+                    //validation (sort of)
+                    string _errorMessages = "";
+                    if(_context.Users.Where(temp => temp.username == _username).Any())
                     {
-                        password = sha512(password);
-                        _context.Felhasznalok.Add(new Felhasznalok { username = username, password = password, email = email });
-                        _context.SaveChanges();
-                        Console.WriteLine($"{username}, {email}");
-                        return View("../Home/Index");
+                        _errorMessages+="Az felhasználónévnek egyedinek kell lennie<br>";
                     }
-                    else
+                    if(_context.Users.Where(temp => temp.email == _email).Any())
                     {
-                        throw new BadHttpRequestException("bruh");
+                        _errorMessages += "Az Email címnek egyedinek kell lennie<br>";
                     }
+                    if (!(_password.Length > 6 && _password.Length < 30))
+                    {
+                        _errorMessages += "A jelszónak 6 és 30 karakter között kell lennie<br>";
+                    }
+                    if(_errorMessages != "")
+                    {
+                        throw new Exception(_errorMessages);
+                    }
+                    _password = sha512(_password);
+                    _context.Users.Add(new User { username = _username, password = _password, email = _email });
+                    _context.SaveChanges();
+                    Console.WriteLine($"{_username}, {_email}");
+                    return View("../Home/Index");
                 }
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
-                Console.WriteLine(ex.Message);                
+                Console.WriteLine(ex.Message);
             }
-            return View("Regisztracio");
+            return View("Registration");
         }
         [HttpPost]
         public ActionResult LoginHandler(IFormCollection form)
@@ -68,17 +79,17 @@ namespace premozi.Controllers
                     string emailOrUserName = form["username"].ToString();
                     string password = form["password"].ToString();
                     password = sha512(password);
-                    IEnumerable<Felhasznalok> _tUserEnum = _context.Felhasznalok.Where(temp => temp.password == password && temp.username == emailOrUserName || temp.email == emailOrUserName);
+                    IEnumerable<User> _tUserEnum = _context.Users.Where(temp => temp.password == password && temp.username == emailOrUserName || temp.email == emailOrUserName);
                     if (_tUserEnum.Any())
                     {
-                        Felhasznalok _tUser = _tUserEnum.First();
+                        User _tUser = _tUserEnum.First();
                         Console.WriteLine($"UID: {_tUser.userID}, username: {_tUser.username}, email: {_tUser.email}");
                         return View("../Home/Index");
                     }
                     else
                     {
-                        Console.WriteLine("Nincs ilyen fiók");
-                        return View("Bejelentkezes");
+                        Console.WriteLine("Helytelen felhasználónév, email, vagy jelszó");
+                        return View("Login");
                     }
                 }                
             }
@@ -86,7 +97,7 @@ namespace premozi.Controllers
             {
                 Console.WriteLine(ex.Message);
             }
-            return View("Bejelentkezes");
+            return View("Login");
         }
 
         // GET: FelhasznalokController
@@ -96,7 +107,7 @@ namespace premozi.Controllers
         }
         public ActionResult lista()
         {
-            return View(_context.Felhasznalok.ToList());
+            return View(_context.Users.ToList());
         }
 
         // GET: FelhasznalokController/Details/5
@@ -108,7 +119,7 @@ namespace premozi.Controllers
                 return NotFound();
             }
 
-            var movie = await _context.Felhasznalok
+            var movie = await _context.Users
                 .FirstOrDefaultAsync(m => m.userID == id);
             if (movie == null)
             {

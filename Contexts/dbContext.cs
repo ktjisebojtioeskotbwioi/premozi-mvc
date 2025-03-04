@@ -15,7 +15,7 @@ namespace premozi.Models
             var serverVersion = new MySqlServerVersion(new Version(10, 4, 32));
             optionsBuilder.UseMySql(connectionString, serverVersion);
         }
-        public DbSet<Felhasznalok> Felhasznalok { get; set; }
+        public DbSet<User> Users { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

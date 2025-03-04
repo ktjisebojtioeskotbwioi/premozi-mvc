@@ -1,20 +1,17 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
-//!!!!IMPORTANT!!!!!
 
 namespace premozi.Migrations
 {
     /// <inheritdoc />
-    public partial class userMigration4 : Migration
+    public partial class addmigration103pccopy : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AlterDatabase()
-                .Annotation("MySql:CharSet", "utf8mb4");
-
             migrationBuilder.CreateTable(
                 name: "Felhasznalok",
                 columns: table => new
@@ -23,12 +20,16 @@ namespace premozi.Migrations
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     username = table.Column<string>(type: "varchar(20)", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    password = table.Column<string>(type: "char(64)", nullable: false)
+                    password = table.Column<string>(type: "char(88)", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     email = table.Column<string>(type: "varchar(100)", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    creation_date = table.Column<DateTime>(type: "DateTime", nullable: false, defaultValueSql: "UTC_TIMESTAMP()"),
+                    creation_date = table.Column<DateTime>(type: "DateTime", nullable: false, defaultValueSql: "ge")
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.ComputedColumn),
                     account_status = table.Column<int>(type: "int(1)", maxLength: 1, nullable: false, defaultValue: 1)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.ComputedColumn),
+                    priviledges = table.Column<int>(type: "int(1)", maxLength: 1, nullable: false, defaultValue: 2)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.ComputedColumn)
                 },
                 constraints: table =>
                 {
@@ -43,8 +44,6 @@ namespace premozi.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "Felhasznalok");
         }
     }
 }

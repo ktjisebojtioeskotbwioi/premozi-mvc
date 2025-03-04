@@ -7,7 +7,7 @@ using System.Text;
 
 namespace premozi.Models
 {
-    public class Felhasznalok
+    public class User
     {
         [Key, Column(TypeName = "int(11)"), DatabaseGenerated(DatabaseGeneratedOption.Identity),  NotNull, Required, Editable(false)]
         public int userID { get; private set; }
@@ -18,7 +18,7 @@ namespace premozi.Models
         public string password { get; set; }
         [Column(TypeName = "varchar(100)"), Index(IsUnique = true), DataType(DataType.EmailAddress, ErrorMessage ="Valid Email-címet kell megadni"), NotNull, Required]
         public string email { get; set; }
-        [Column(TypeName = "DateTime"), DatabaseGenerated(DatabaseGeneratedOption.Computed), DataType(DataType.DateTime), Editable(false), NotNull, Required]
+        [Column(TypeName = "DateTime"), DatabaseGenerated(DatabaseGeneratedOption.Computed), DataType(DataType.DateTime), Editable(false), NotNull, Required, DefaultValue("UTC_TIMESTAMP()")]
         public DateTime creation_date { get; private set; }
         [Column(TypeName = "int(1)"), DatabaseGenerated(DatabaseGeneratedOption.Computed), DefaultValue(1), MaxLength(1), MinLength(1), NotNull, Required]
         public int account_status { get; private set; }

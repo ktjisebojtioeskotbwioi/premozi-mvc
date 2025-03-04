@@ -1,4 +1,17 @@
-migrationBuilder.CreateTable(
+using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
+
+#nullable disable
+
+namespace premozi.Migrations
+{
+    /// <inheritdoc />
+    public partial class _103pccopy : Migration
+    {
+        /// <inheritdoc />
+        protected override void Up(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.CreateTable(
                 name: "Felhasznalok",
                 columns: table => new
                 {
@@ -25,3 +38,12 @@ migrationBuilder.CreateTable(
 
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
+        }
+
+        /// <inheritdoc />
+        protected override void Down(MigrationBuilder migrationBuilder)
+        {
+
+        }
+    }
+}

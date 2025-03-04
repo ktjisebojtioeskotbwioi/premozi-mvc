@@ -2,6 +2,8 @@ using premozi.Models;
 using Pomelo.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using MySql.Data.MySqlClient;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +13,8 @@ var connectionString = "server=localhost;user=root;password=;database=premozi;";
 var serverVersion = new MySqlServerVersion(new Version(10, 4, 32));
 builder.Services.AddDbContext<DataBaseContext>(options =>
     options.UseMySql(connectionString, serverVersion));
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -31,5 +35,4 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
-
 app.Run();
