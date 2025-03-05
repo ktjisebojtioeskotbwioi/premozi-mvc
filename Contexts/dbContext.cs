@@ -16,6 +16,10 @@ namespace premozi.Models
             optionsBuilder.UseMySql(connectionString, serverVersion);
         }
         public DbSet<User> Users { get; set; }
+        public DbSet<Film> Film { get; set; }
+        public DbSet<Terem> Terem { get; set; }
+        public DbSet<Vetites> Vetites { get; set; }
+        public DbSet<Rendeles> Rendeles { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

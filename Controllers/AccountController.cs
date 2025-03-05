@@ -106,7 +106,7 @@ namespace premozi.Controllers
         {
             return View();
         }
-        public ActionResult lista()
+        public ActionResult Lista()
         {
             return View(_context.Users.ToList());
         }

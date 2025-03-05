@@ -1,0 +1,91 @@
+﻿@{
+    ViewData["Title"] = "Filmek listája";
+    @model IEnumerable<premozi.Models.Film>
+}
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr class="text-light border-1">
+            <th class="border-1"> @Html.DisplayNameFor(model => model.id)</th>
+            <th class="border-1"> @Html.DisplayNameFor(model => model.Cim)</th>
+            <th class="border-1"> @Html.DisplayNameFor(model => model.Kategoria)</th>
+            <th class="border-1"> @Html.DisplayNameFor(model => model.Mufaj)</th>
+            <th class="border-1"> @Html.DisplayNameFor(model => model.Korhatar)</th>
+            <th class="border-1"> @Html.DisplayNameFor(model => model.Jatekido)</th>
+            <th class="border-1"> @Html.DisplayNameFor(model => model.Gyarto)</th>
+            <th class="border-1"> @Html.DisplayNameFor(model => model.Rendezo)</th>
+            <th class="border-1"> @Html.DisplayNameFor(model => model.Szereplok)</th>
+            <th class="border-1"> @Html.DisplayNameFor(model => model.Leiras)</th>
+            <th class="border-1"> @Html.DisplayNameFor(model => model.Eredeti_nyelv)</th>
+            <th class="border-1"> @Html.DisplayNameFor(model => model.Eredeti_cim)</th>
+            <th class="border-1"> @Html.DisplayNameFor(model => model.Szinkron)</th>
+            <th class="border-1"> @Html.DisplayNameFor(model => model.TrailerLink)</th>
+            <th class="border-1"> @Html.DisplayNameFor(model => model.IMDB)</th>
+            <th class="border-1"> @Html.DisplayNameFor(model => model.AlapAr)</th>
+            <th class="border-1"></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr class="text-light border-1">
+                <td class="border-1">
+                    @Html.DisplayFor(modelItem => item.id)
+            </td>
+                <td class="border-1">
+                    @Html.DisplayFor(modelItem => item.Cim)
+            </td>
+            <td class="border-1">
+                    @Html.DisplayFor(modelItem => item.Kategoria)
+            </td>
+                <td class="border-1">
+                    @Html.DisplayFor(modelItem => item.Mufaj)
+                </td>
+                <td class="border-1">
+                    @Html.DisplayFor(modelItem => item.Korhatar)
+                </td>
+                <td class="border-1">
+                    @Html.DisplayFor(modelItem => item.Jatekido)
+                </td>
+                <td class="border-1">
+                    @Html.DisplayFor(modelItem => item.Gyarto)
+                </td>
+                <td class="border-1">
+                    @Html.DisplayFor(modelItem => item.Rendezo)
+                </td>
+                <td class="border-1">
+                    @Html.DisplayFor(modelItem => item.Szereplok)
+                </td>
+                <td class="border-1">
+                    @Html.DisplayFor(modelItem => item.Leiras)
+                </td>
+                <td class="border-1">
+                    @Html.DisplayFor(modelItem => item.Eredeti_nyelv)
+                </td>
+                <td class="border-1">
+                    @Html.DisplayFor(modelItem => item.Eredeti_cim)
+                </td>
+                <td class="border-1">
+                    @Html.DisplayFor(modelItem => item.Szinkron)
+                </td>
+                <td class="border-1">
+                    @Html.DisplayFor(modelItem => item.TrailerLink)
+                </td>
+                <td class="border-1">
+                    @Html.DisplayFor(modelItem => item.IMDB)
+                </td>
+                <td class="border-1">
+                    @Html.DisplayFor(modelItem => item.AlapAr)
+                </td>
+            <td class="border-1">
+                <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
