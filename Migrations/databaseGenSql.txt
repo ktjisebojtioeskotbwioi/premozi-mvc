@@ -36,6 +36,7 @@ CREATE TABLE Film(
     TrailerLink TEXT NOT NULL,
     IMDB TEXT NOT NULL,
     AlapAr INT(11) NULL,
+    Megjegyzes LONGTEXT NULL,
     PRIMARY KEY (id)
 );
 CREATE TABLE Vetites (
@@ -53,7 +54,7 @@ CREATE TABLE Rendeles (
     VetitesID INT(11) NOT NULL,
     UserID INT(11) NOT NULL,
     Hely TEXT NOT NULL,
-    Statusz TEXT NOT NULL,
+    Statusz INT(1) NOT NULL DEFAULT 1,
     Megjegyzes LONGTEXT NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (VetitesID) REFERENCES Vetites(id),

@@ -11,13 +11,13 @@ namespace premozi.Models
     {
         [Key, Column(TypeName = "int(5)"), DatabaseGenerated(DatabaseGeneratedOption.Identity), NotNull, Required, Editable(false)]
         public int id { get; set; }
-        [Column(TypeName = "int(11)"), NotNull, Required, ForeignKey("Film(id)")]
+        [Column(TypeName = "int(11)"), NotNull, Required, ForeignKey("Film(id)"), DataType(DataType.Custom, ErrorMessage = "Kötelező filmet megadni")]
         public int FilmID { get; set; }
-        [Column(TypeName = "DateTime"), NotNull, Required]
+        [Column(TypeName = "DateTime"), NotNull, Required, DataType(DataType.Text, ErrorMessage = "Kötelező időpontot megadni")]
         public DateTime Idopont { get; set; }
-        [Column(TypeName = "int(5)"), NotNull, Required, ForeignKey("Terem(id)")]
+        [Column(TypeName = "int(5)"), NotNull, Required, ForeignKey("Terem(id)"), DataType(DataType.Custom, ErrorMessage = "Kötelező termet megadni")]
         public int TeremID { get; set; }
-        [Column(TypeName = "longtext"), AllowNull]
+        [Column(TypeName = "longtext"), AllowNull, DataType(DataType.Text, ErrorMessage = "Hiba történt a megjegyzés hozzáadása során")]
         public string Megjegyzes { get; set; }
         public virtual Film Film { get; set; }
         public virtual Terem Terem { get; set; }

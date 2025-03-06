@@ -11,15 +11,15 @@ namespace premozi.Models
     {
         [Key, Column(TypeName = "int(11)"), DatabaseGenerated(DatabaseGeneratedOption.Identity), NotNull, Required, Editable(false)]
         public int id { get; set; }
-        [Column(TypeName = "int(11)"), NotNull, Required, ForeignKey("Vetites(id)")]
+        [Column(TypeName = "int(11)"), NotNull, Required, ForeignKey("Vetites(id)"), DataType(DataType.Custom, ErrorMessage = "Váratlan hiba történt (vetítés id)")]
         public int VetitesID { get; set; }
-        [Column(TypeName = "text"), NotNull, Required, ForeignKey("User(userID)")]
+        [Column(TypeName = "int(11)"), NotNull, Required, ForeignKey("User(userID)"), DataType(DataType.Custom, ErrorMessage = "Váratlan hiba történt (felhasználó id)")]
         public string UserID { get; set; }
-        [Column(TypeName = "text"), NotNull, Required]
+        [Column(TypeName = "text"), NotNull, Required, DataType(DataType.Text, ErrorMessage = "Váratlan hiba történt (hely)")]
         public int Hely { get; set; }
-        [Column(TypeName ="text"), NotNull, Required]
-        public string Statusz { get; set; }
-        [Column(TypeName = "longtext"), AllowNull]
+        [Column(TypeName ="int(1)"), DatabaseGenerated(DatabaseGeneratedOption.Computed), NotNull, Required, DataType(DataType.Text, ErrorMessage = "Váratlan hiba történt (státusz)"), DefaultValue(1)]
+        public int Statusz { get; set; }
+        [Column(TypeName = "longtext"), AllowNull, DataType(DataType.Text, ErrorMessage = "Hiba történt a megjegyzés hozzáadása során")]
         public string Megjegyzes { get; set; }
         public virtual User User { get; set; }
         public virtual Vetites Vetites { get; set; }
