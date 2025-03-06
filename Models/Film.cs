@@ -19,7 +19,7 @@ namespace premozi.Models
         public string Mufaj { get; set; }
         [Required, NotNull, Column(TypeName = "TEXT"), DataType(DataType.Text, ErrorMessage = "Kötelező korhatárt megadni")]
         public string Korhatar { get; set; }
-        [Required, NotNull, Column(TypeName = "INT(4)"), DataType(DataType.Custom, ErrorMessage = "Kötelező játékidőt megadni")]
+        [Required, NotNull, Column(TypeName = "INT(4)"), Length(1,4,ErrorMessage ="Kötelező játékidőt megadni")]
         public int Jatekido { get; set; }
         [Required, NotNull, Column(TypeName = "TEXT"), DataType(DataType.Text, ErrorMessage = "Kötelező gyártót megadni")]
         public string Gyarto { get; set; }

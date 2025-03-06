@@ -14,7 +14,7 @@ namespace premozi.Models
             var connectionString = "server=localhost;user=root;password=;database=premozi;";
             var serverVersion = new MySqlServerVersion(new Version(10, 4, 32));
             optionsBuilder.UseMySql(connectionString, serverVersion);
-        }
+        }   
         public DbSet<User> Users { get; set; }
         public DbSet<Film> Film { get; set; }
         public DbSet<Terem> Terem { get; set; }

@@ -11,9 +11,9 @@ namespace premozi.Models
     {
         [Key, Column(TypeName = "int(11)"), DatabaseGenerated(DatabaseGeneratedOption.Identity), NotNull, Required, Editable(false)]
         public int id { get; set; }
-        [Column(TypeName = "int(11)"), NotNull, Required, ForeignKey("Vetites(id)"), DataType(DataType.Custom, ErrorMessage = "Váratlan hiba történt (vetítés id)")]
+        [Column(TypeName = "int(11)"), NotNull, Required, ForeignKey("Vetites(id)")]
         public int VetitesID { get; set; }
-        [Column(TypeName = "int(11)"), NotNull, Required, ForeignKey("User(userID)"), DataType(DataType.Custom, ErrorMessage = "Váratlan hiba történt (felhasználó id)")]
+        [Column(TypeName = "int(11)"), NotNull, Required, ForeignKey("User(userID)")]
         public string UserID { get; set; }
         [Column(TypeName = "text"), NotNull, Required, DataType(DataType.Text, ErrorMessage = "Váratlan hiba történt (hely)")]
         public int Hely { get; set; }
