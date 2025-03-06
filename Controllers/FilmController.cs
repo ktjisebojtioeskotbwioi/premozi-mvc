@@ -31,7 +31,7 @@ namespace premozi.Controllers
         }
         public ActionResult Lista()
         {           
-            return View(_context.Film);
+            return View(_context.Film.ToList());
         }
     }
 }

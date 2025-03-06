@@ -7,14 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Migrations\DataBaseContextModelSnapshot.txt" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Include="Migrations\DataBaseContextModelSnapshot.txt" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.2">
       <PrivateAssets>all</PrivateAssets>
@@ -28,6 +20,10 @@
     <PackageReference Include="MySql.Data" Version="8.0.20" />
     <PackageReference Include="MySql.Data.EntityFramework" Version="8.0.20" />
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="8.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
 </Project>

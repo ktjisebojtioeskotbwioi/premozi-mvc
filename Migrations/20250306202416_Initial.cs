@@ -2,18 +2,16 @@
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-#nullable disable
-
 namespace premozi.Migrations
 {
     /// <inheritdoc />
-    public partial class _103pccopy3 : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "Felhasznalok");
+            migrationBuilder.AlterDatabase()
+                .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
                 name: "Film",
@@ -48,7 +46,9 @@ namespace premozi.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     IMDB = table.Column<string>(type: "TEXT", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    AlapAr = table.Column<int>(type: "INT(11)", nullable: false)
+                    AlapAr = table.Column<int>(type: "INT(11)", nullable: false),
+                    Megjegyzes = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
                 {
@@ -68,7 +68,7 @@ namespace premozi.Migrations
                     Sorok = table.Column<int>(type: "int(3)", nullable: false),
                     Allapot = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Megjegyzes = table.Column<string>(type: "longtext", nullable: false)
+                    Megjegyzes = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
@@ -91,12 +91,18 @@ namespace premozi.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     creation_date = table.Column<DateTime>(type: "DateTime", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.ComputedColumn),
-                    account_status = table.Column<int>(type: "int(1)", maxLength: 1, nullable: false),
+                    account_status = table.Column<int>(type: "int(1)", maxLength: 1, nullable: false)
+            .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.ComputedColumn),
                     priviledges = table.Column<int>(type: "int(1)", maxLength: 1, nullable: false)
+            .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.ComputedColumn),
+                    Megjegyzes = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Users", x => x.userID);
+                    table.UniqueConstraint("UK_Username", x => x.username);
+                    table.UniqueConstraint("UK_Email", x => x.email);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -106,24 +112,24 @@ namespace premozi.Migrations
                 {
                     id = table.Column<int>(type: "int(5)", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    FilmID = table.Column<int>(type: "int(11)", nullable: false),
                     Idopont = table.Column<DateTime>(type: "DateTime", nullable: false),
-                    TeremID = table.Column<int>(type: "int(5)", nullable: false),
-                    Megjegyzes = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4")
+                    Megjegyzes = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Filmid = table.Column<int>(type: "int(11)", nullable: false),
+                    Teremid = table.Column<int>(type: "int(5)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Vetites", x => x.id);
                     table.ForeignKey(
-                        name: "FK_Vetites_Film_FilmID",
-                        column: x => x.FilmID,
+                        name: "FK_Vetites_Film_Filmid",
+                        column: x => x.Filmid,
                         principalTable: "Film",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Vetites_Terem_TeremID",
-                        column: x => x.TeremID,
+                        name: "FK_Vetites_Terem_Teremid",
+                        column: x => x.Teremid,
                         principalTable: "Terem",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
@@ -136,16 +142,13 @@ namespace premozi.Migrations
                 {
                     id = table.Column<int>(type: "int(11)", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    VetitesID = table.Column<int>(type: "int(11)", nullable: false),
-                    UserID = table.Column<string>(type: "text", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
                     Hely = table.Column<string>(type: "text", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Statusz = table.Column<string>(type: "text", nullable: false)
+                    Statusz = table.Column<int>(type: "int(1)", nullable: false),
+                    Megjegyzes = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Megjegyzes = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    userID = table.Column<int>(type: "int(11)", nullable: false)
+                    userID = table.Column<int>(type: "int(11)", nullable: false),
+                    Vetitesid = table.Column<int>(type: "int(5)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -157,8 +160,8 @@ namespace premozi.Migrations
                         principalColumn: "userID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Rendeles_Vetites_VetitesID",
-                        column: x => x.VetitesID,
+                        name: "FK_Rendeles_Vetites_Vetitesid",
+                        column: x => x.Vetitesid,
                         principalTable: "Vetites",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
@@ -171,19 +174,19 @@ namespace premozi.Migrations
                 column: "userID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Rendeles_VetitesID",
+                name: "IX_Rendeles_Vetitesid",
                 table: "Rendeles",
-                column: "VetitesID");
+                column: "Vetitesid");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Vetites_FilmID",
+                name: "IX_Vetites_Filmid",
                 table: "Vetites",
-                column: "FilmID");
+                column: "Filmid");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Vetites_TeremID",
+                name: "IX_Vetites_Teremid",
                 table: "Vetites",
-                column: "TeremID");
+                column: "Teremid");
         }
 
         /// <inheritdoc />
@@ -203,29 +206,6 @@ namespace premozi.Migrations
 
             migrationBuilder.DropTable(
                 name: "Terem");
-
-            migrationBuilder.CreateTable(
-                name: "Felhasznalok",
-                columns: table => new
-                {
-                    userID = table.Column<int>(type: "int(11)", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    account_status = table.Column<int>(type: "int(1)", maxLength: 1, nullable: false),
-                    creation_date = table.Column<DateTime>(type: "DateTime", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.ComputedColumn),
-                    email = table.Column<string>(type: "varchar(100)", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    password = table.Column<string>(type: "char(88)", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    priviledges = table.Column<int>(type: "int(1)", maxLength: 1, nullable: false),
-                    username = table.Column<string>(type: "varchar(20)", maxLength: 20, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4")
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Felhasznalok", x => x.userID);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
         }
     }
 }

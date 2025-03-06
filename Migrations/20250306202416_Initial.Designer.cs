@@ -12,8 +12,8 @@ using premozi.Models;
 namespace premozi.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    [Migration("20250306072459_103pccopy3")]
-    partial class _103pccopy3
+    [Migration("20250306202416_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -71,6 +71,10 @@ namespace premozi.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Megjegyzes")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
                     b.Property<string>("Mufaj")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -112,23 +116,19 @@ namespace premozi.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<string>("Statusz")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<int>("Statusz")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("int(1)");
 
-                    b.Property<string>("UserID")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<int>("VetitesID")
-                        .HasColumnType("int(11)");
+                    b.Property<int>("Vetitesid")
+                        .HasColumnType("int(5)");
 
                     b.Property<int>("userID")
                         .HasColumnType("int(11)");
 
                     b.HasKey("id");
 
-                    b.HasIndex("VetitesID");
+                    b.HasIndex("Vetitesid");
 
                     b.HasIndex("userID");
 
@@ -174,6 +174,10 @@ namespace premozi.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("userID"));
 
+                    b.Property<string>("Megjegyzes")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
                     b.Property<int>("account_status")
                         .ValueGeneratedOnAddOrUpdate()
                         .HasMaxLength(1)
@@ -205,6 +209,12 @@ namespace premozi.Migrations
 
                     b.HasKey("userID");
 
+                    b.HasIndex("email")
+                        .IsUnique();
+
+                    b.HasIndex("username")
+                        .IsUnique();
+
                     b.ToTable("Users");
                 });
 
@@ -216,7 +226,7 @@ namespace premozi.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("id"));
 
-                    b.Property<int>("FilmID")
+                    b.Property<int>("Filmid")
                         .HasColumnType("int(11)");
 
                     b.Property<DateTime>("Idopont")
@@ -226,14 +236,14 @@ namespace premozi.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<int>("TeremID")
+                    b.Property<int>("Teremid")
                         .HasColumnType("int(5)");
 
                     b.HasKey("id");
 
-                    b.HasIndex("FilmID");
+                    b.HasIndex("Filmid");
 
-                    b.HasIndex("TeremID");
+                    b.HasIndex("Teremid");
 
                     b.ToTable("Vetites");
                 });
@@ -242,7 +252,7 @@ namespace premozi.Migrations
                 {
                     b.HasOne("premozi.Models.Vetites", "Vetites")
                         .WithMany()
-                        .HasForeignKey("VetitesID")
+                        .HasForeignKey("Vetitesid")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -261,13 +271,13 @@ namespace premozi.Migrations
                 {
                     b.HasOne("premozi.Models.Film", "Film")
                         .WithMany()
-                        .HasForeignKey("FilmID")
+                        .HasForeignKey("Filmid")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("premozi.Models.Terem", "Terem")
                         .WithMany()
-                        .HasForeignKey("TeremID")
+                        .HasForeignKey("Teremid")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

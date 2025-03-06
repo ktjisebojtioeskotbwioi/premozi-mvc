@@ -14,10 +14,10 @@ namespace premozi.Models
             var connectionString = "server=localhost;user=root;password=;database=premozi;";
             var serverVersion = new MySqlServerVersion(new Version(10, 4, 32));
             optionsBuilder.UseMySql(connectionString, serverVersion);
-        }   
-        public DbSet<User> Users { get; set; }
+        }
         public DbSet<Film> Film { get; set; }
         public DbSet<Terem> Terem { get; set; }
+        public DbSet<User> Users { get; set; }
         public DbSet<Vetites> Vetites { get; set; }
         public DbSet<Rendeles> Rendeles { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -11,7 +11,7 @@ CREATE TABLE Users (
     PRIMARY KEY (userID)
 );
 CREATE TABLE Terem (
-    id INT(11) NOT NULL AUTO_INCREMENT,
+    id INT(5) NOT NULL AUTO_INCREMENT,
     Ferohely INT(3) NOT NULL,
     Tipus TEXT NOT NULL,
     Sorok INT(3) NOT NULL,
