@@ -2,11 +2,7 @@
     ViewData["Title"] = "Felhasználók listája";
     @model IEnumerable<premozi.Models.User>
 }
-<h1>Index</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+<h1>Felhasználók listája</h1>
 <table class="table">
     <thead>
         <tr class="text-light border-1">
@@ -26,6 +22,7 @@
                 @Html.DisplayNameFor(model => model.account_status)
             </th>
             <th class="border-1">@Html.DisplayNameFor(model => model.priviledges)</th>
+            <th class="border-1">@Html.DisplayNameFor(model => model.Megjegyzes)</th>
             <th class="border-1"></th>
         </tr>
     </thead>
@@ -49,6 +46,9 @@
                 </td>
                 <td class="border-1">
                     @Html.DisplayFor(modelItem => item.priviledges)
+                </td>
+                <td class="border-1">
+                    @Html.DisplayFor(modelItem => item.Megjegyzes)
                 </td>
             <td class="border-1">
                 <a asp-action="Edit" asp-route-id="@item.userID">Edit</a> |

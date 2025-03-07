@@ -2,10 +2,12 @@
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
+#nullable disable
+
 namespace premozi.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial1 : Migration
+    public partial class huh : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -89,12 +91,9 @@ namespace premozi.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     email = table.Column<string>(type: "varchar(100)", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    creation_date = table.Column<DateTime>(type: "DateTime", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.ComputedColumn),
-                    account_status = table.Column<int>(type: "int(1)", maxLength: 1, nullable: false)
-            .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.ComputedColumn),
-                    priviledges = table.Column<int>(type: "int(1)", maxLength: 1, nullable: false)
-            .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.ComputedColumn),
+                    creation_date = table.Column<DateTime>(type: "DateTime", nullable: false),
+                    account_status = table.Column<int>(type: "int(1)", maxLength: 1, nullable: false),
+                    priviledges = table.Column<int>(type: "int(1)", maxLength: 1, nullable: false),
                     Megjegyzes = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4")
                 },

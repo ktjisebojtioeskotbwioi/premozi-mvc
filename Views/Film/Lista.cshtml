@@ -1,36 +1,34 @@
 ﻿@{
     ViewData["Title"] = "Filmek listája";
-    @model IEnumerable<premozi.Models.Film>;
+    @model dynamic;
+    IEnumerable<premozi.Models.Film> bruh = Model.ToList();
 }
-<h1>Index</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+<h1>Filmek listája</h1>
 <table class="table">
     <thead>
         <tr class="text-light border-1">
-            <th class="border-1"> @Html.DisplayNameFor(model => model.id)</th>
-            <th class="border-1"> @Html.DisplayNameFor(model => model.Cim)</th>
-            <th class="border-1"> @Html.DisplayNameFor(model => model.Kategoria)</th>
-            <th class="border-1"> @Html.DisplayNameFor(model => model.Mufaj)</th>
-            <th class="border-1"> @Html.DisplayNameFor(model => model.Korhatar)</th>
-            <th class="border-1"> @Html.DisplayNameFor(model => model.Jatekido)</th>
-            <th class="border-1"> @Html.DisplayNameFor(model => model.Gyarto)</th>
-            <th class="border-1"> @Html.DisplayNameFor(model => model.Rendezo)</th>
-            <th class="border-1"> @Html.DisplayNameFor(model => model.Szereplok)</th>
-            <th class="border-1"> @Html.DisplayNameFor(model => model.Leiras)</th>
-            <th class="border-1"> @Html.DisplayNameFor(model => model.Eredeti_nyelv)</th>
-            <th class="border-1"> @Html.DisplayNameFor(model => model.Eredeti_cim)</th>
-            <th class="border-1"> @Html.DisplayNameFor(model => model.Szinkron)</th>
-            <th class="border-1"> @Html.DisplayNameFor(model => model.TrailerLink)</th>
-            <th class="border-1"> @Html.DisplayNameFor(model => model.IMDB)</th>
-            <th class="border-1"> @Html.DisplayNameFor(model => model.AlapAr)</th>
+            <th class="border-1"> @Html.DisplayNameFor(model => bruh.id)</th>
+            <th class="border-1"> @Html.DisplayNameFor(model => bruh.Cim)</th>
+            <th class="border-1"> @Html.DisplayNameFor(model => bruh.Kategoria)</th>
+            <th class="border-1"> @Html.DisplayNameFor(model => bruh.Mufaj)</th>
+            <th class="border-1"> @Html.DisplayNameFor(model => bruh.Korhatar)</th>
+            <th class="border-1"> @Html.DisplayNameFor(model => bruh.Jatekido)</th>
+            <th class="border-1"> @Html.DisplayNameFor(model => bruh.Gyarto)</th>
+            <th class="border-1"> @Html.DisplayNameFor(model => bruh.Rendezo)</th>
+            <th class="border-1"> @Html.DisplayNameFor(model => bruh.Szereplok)</th>
+            <th class="border-1"> @Html.DisplayNameFor(model => bruh.Leiras)</th>
+            <th class="border-1"> @Html.DisplayNameFor(model => bruh.Eredeti_nyelv)</th>
+            <th class="border-1"> @Html.DisplayNameFor(model => bruh.Eredeti_cim)</th>
+            <th class="border-1"> @Html.DisplayNameFor(model => bruh.Szinkron)</th>
+            <th class="border-1"> @Html.DisplayNameFor(model => bruh.TrailerLink)</th>
+            <th class="border-1"> @Html.DisplayNameFor(model => bruh.IMDB)</th>
+            <th class="border-1"> @Html.DisplayNameFor(model => bruh.AlapAr)</th>
+            <th class="border-1"> @Html.DisplayNameFor(model => bruh.Megjegyzes)</th>
             <th class="border-1"></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+@foreach (var item in bruh) {
         <tr class="text-light border-1">
                 <td class="border-1">
                     @Html.DisplayFor(modelItem => item.id)
@@ -79,6 +77,9 @@
                 </td>
                 <td class="border-1">
                     @Html.DisplayFor(modelItem => item.AlapAr)
+                </td>
+                <td class="border-1">
+                    @Html.DisplayFor(modelItem => item.Megjegyzes)
                 </td>
             <td class="border-1">
                 <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |

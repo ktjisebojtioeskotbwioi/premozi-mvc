@@ -41,8 +41,8 @@ namespace premozi.Models
         public string IMDB { get; set; }
         [Required, NotNull, Column(TypeName = "INT(11)"), DataType(DataType.Currency, ErrorMessage = "Kötelező árat megadni")]
         public int AlapAr { get; set; }
-        [Column(TypeName = "longtext"), AllowNull, DataType(DataType.Text, ErrorMessage = "Hiba történt a megjegyzés hozzáadása során")]
-        public string Megjegyzes { get; set; }
+        [Column(TypeName = "longtext"), NotNull, DataType(DataType.Text, ErrorMessage = "Hiba történt a megjegyzés hozzáadása során")]
+        public string Megjegyzes { get; set; } = "Nincs megjegyzés";
 
     }
 }

@@ -17,9 +17,9 @@ namespace premozi.Models
         public string Tipus { get; set; }
         [Column(TypeName ="int(3)"), NotNull, Required, DataType(DataType.Custom, ErrorMessage = "Kötelező a sorok mennyiségét megadni")]
         public int Sorok { get; set; }
-        [Column(TypeName ="longtext"), NotNull, Required, DataType(DataType.Text, ErrorMessage = "Kötelező az állapotot megadni")]
-        public string Allapot { get; set; }
-        [Column(TypeName = "longtext"), AllowNull, DataType(DataType.Text, ErrorMessage = "Hiba történt a megjegyzés hozzáadása során")]
-        public string Megjegyzes { get; set; }
+        [Column(TypeName = "longtext"), NotNull, Required, DataType(DataType.Text, ErrorMessage = "Kötelező az állapotot megadni")]
+        public string Allapot { get; set; } = "Működik";
+        [Column(TypeName = "longtext"), NotNull, DataType(DataType.Text, ErrorMessage = "Hiba történt a megjegyzés hozzáadása során")]
+        public string Megjegyzes { get; set; } = "Nincs megjegyzés";
     }
 }

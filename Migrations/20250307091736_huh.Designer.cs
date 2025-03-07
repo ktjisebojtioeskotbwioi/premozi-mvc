@@ -12,8 +12,8 @@ using premozi.Models;
 namespace premozi.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    [Migration("20250306202416_Initial")]
-    partial class Initial1
+    [Migration("20250307091736_huh")]
+    partial class huh
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

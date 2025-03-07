@@ -14,8 +14,8 @@ namespace premozi.Models
         public int id { get; set; }
         [Column(TypeName = "DateTime"), NotNull, Required, DataType(DataType.Text, ErrorMessage = "Kötelező időpontot megadni")]
         public DateTime Idopont { get; set; }
-        [Column(TypeName = "longtext"), AllowNull, DataType(DataType.Text, ErrorMessage = "Hiba történt a megjegyzés hozzáadása során")]
-        public string Megjegyzes { get; set; }
+        [Column(TypeName = "longtext"), NotNull, DataType(DataType.Text, ErrorMessage = "Hiba történt a megjegyzés hozzáadása során")]
+        public string Megjegyzes { get; set; } = "Nincs megjegyzés";
         [Length(1, 11, ErrorMessage = "Kötelező film ID-t megadni")]
         public virtual Film Film { get; set; }
         [Length(1, 5, ErrorMessage = "Kötelező terem ID-t megadni")]

@@ -22,13 +22,13 @@ namespace premozi.Models
         public string password { get; set; }
         [Column(TypeName = "varchar(100)"), DataType(DataType.EmailAddress, ErrorMessage ="Valid Email-címet kell megadni"), NotNull, Required]
         public string email { get; set; }
-        [Column(TypeName = "DateTime"), DatabaseGenerated(DatabaseGeneratedOption.Computed), DataType(DataType.DateTime, ErrorMessage = "Nem várt hiba történt"), Editable(false), NotNull, Required, DefaultValue("UTC_TIMESTAMP()")]
+        [Column(TypeName = "DateTime"), DataType(DataType.DateTime, ErrorMessage = "Nem várt hiba történt"), Editable(false), NotNull, Required]
         public DateTime creation_date { get; private set; } = DateTime.UtcNow;
-        [Column(TypeName = "int(1)"), DatabaseGenerated(DatabaseGeneratedOption.Computed), DefaultValue(1), MaxLength(1), MinLength(1), NotNull, Required]
+        [Column(TypeName = "int(1)"), MaxLength(1), MinLength(1), NotNull, Required]
         public int account_status { get; private set; } = 1;
-        [Column(TypeName = "int(1)"), DatabaseGenerated(DatabaseGeneratedOption.Computed), DefaultValue(2), MaxLength(1), MinLength(1), NotNull, Required]
+        [Column(TypeName = "int(1)"), MaxLength(1), MinLength(1), NotNull, Required]
         public int priviledges { get; private set; } = 2;
-        [Column(TypeName = "longtext"), AllowNull, DataType(DataType.Text, ErrorMessage = "Hiba történt a megjegyzés hozzáadása során")]
-        public string Megjegyzes { get; set; }
+        [Column(TypeName = "longtext"), NotNull, DataType(DataType.Text, ErrorMessage = "Hiba történt a megjegyzés hozzáadása során")]
+        public string Megjegyzes { get; set; } = "Nincs megjegyzés";
     }
 }
